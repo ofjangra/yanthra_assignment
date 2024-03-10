@@ -6,28 +6,58 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary-blue: #F8FAFC;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: 'SFProDisplayRegular';
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format('truetype');
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@font-face {
+  font-family: 'SFProDisplayBold';
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF") format('truetype');
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@font-face {
+  font-family: 'SFProDisplayMedium';
+  src: url("/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format('truetype');
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page_wrapper {
+  margin-top: 80px;
+  padding: 50px 80px;
+}
+
+.button_filled {
+  padding: 8px 20px 8px 20px;
+  border-radius: 8px;
+  gap: 10px;
+  background-color: #2563EB;
+  box-shadow: 0px -3px 0px 0px #00000040 inset;
+  font-family: 'SFProDisplayMedium';
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  color: #fff;
+}
+
+
+.button_outlined {
+  padding: 8px 20px 8px 20px;
+  border-radius: 8px;
+  border: 1px solid #2563EB;
+  gap: 10px;
+  color: #2563EB;
+  font-family: 'SFProDisplayMedium';
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0em;
 }
