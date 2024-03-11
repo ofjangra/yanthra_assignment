@@ -1,0 +1,167 @@
+.s_appointments_container {
+    border-radius: 8px 8px 0px 0px;
+    border: 1px solid #E2E2E2;
+    background-color: #FBFBFB;
+    width: 33%;
+
+    .title {
+        h2 {
+            font-family: 'SFProDisplayBold';
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 38px;
+            letter-spacing: 0.005em;
+            text-align: left;
+
+        }
+    }
+
+    .appointments_search {
+        padding: 0px 16px 0px 0px;
+        border-radius: 12px;
+        border: 1px solid #0000001A;
+        gap: 10px;
+        height: 48px;
+        background-color: #FFFFFF;
+
+        input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+            padding-left: 48px;
+            font-family: 'SFProDisplayRegular';
+        }
+
+        input:focus {
+            outline: 0;
+
+        }
+
+        input::placeholder {
+            font-size: 16px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 16px;
+            letter-spacing: -0.019em;
+            text-align: left;
+        }
+    }
+
+    .appointments_wrapper_t {
+        height: 70%;
+    }
+
+
+    .navigations {
+        top: 198px;
+        gap: 16px;
+        height: 40px;
+        border-bottom: 1px solid #E2E8F0;
+
+        span {
+            font-family: 'SFProDisplayRegular';
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17px;
+            letter-spacing: 0.005em;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .navigation_item {
+            cursor: pointer;
+
+            div {
+                height: 4px;
+            }
+
+            .active {
+
+                width: 100%;
+                border-radius: 12px 12px 0px 0px;
+                background-color: #2563EB;
+            }
+        }
+
+
+    }
+
+    .appointments_t {
+        overflow: scroll;
+        height: 100%;
+    }
+
+    .appointment_card_t {
+        width: 100%;
+        gap: 16px;
+        padding: 24px 0;
+        border-bottom: 1px solid #E2E2E2;
+
+        .doc_profile_photo {
+            height: 80px;
+            width: 80px;
+            border-radius: 40px;
+        }
+
+        .appointment_info {
+            min-height: 210px;
+        }
+
+        h2 {
+            font-family: 'SFProDisplayMedium';
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0.005em;
+            text-align: left;
+        }
+
+        .appointment_desc {
+            font-family: 'SFProDisplayRegular';
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.005em;
+            color: #1F2937;
+            opacity: 70%;
+
+            strong {
+                font-family: 'SFProDisplayMedium';
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 20px;
+                letter-spacing: 0.005em;
+
+            }
+        }
+
+        .client_pet_info {
+            font-family: 'SFProDisplayRegular';
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0.005em;
+            color: #2563EB;
+        }
+
+        span {
+            font-family: 'SFProDisplayRegular';
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17px;
+            color: #646464;
+
+            img {
+                margin-right: 10px;
+            }
+        }
+
+        .action_buttons {
+            gap: 24px;
+        }
+    }
+
+    .appointment_card_t:last-child {
+        border: none;
+    }
+}

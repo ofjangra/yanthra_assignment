@@ -24,11 +24,26 @@
   src: url("/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format('truetype');
 }
 
+@font-face {
+  font-family: 'MonaSansRegular';
+  src: url("/fonts/mona_sans/TTF/Mona-Sans-Regular.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'MonaSansMedium';
+  src: url("/fonts/mona_sans/TTF/Mona-Sans-Medium.ttf") format('truetype');
+}
 
+@font-face {
+  font-family: 'MonaSansBold';
+  src: url("/fonts/mona_sans/TTF/Mona-Sans-Bold.ttf") format('truetype');
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+main{
+  gap: 80px;
 }
 
 .page_wrapper {
@@ -56,6 +71,18 @@
   border: 1px solid #2563EB;
   gap: 10px;
   color: #2563EB;
+  font-family: 'SFProDisplayMedium';
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0em;
+}
+
+.button_outlined_danger{
+  padding: 8px 20px 8px 20px;
+  border-radius: 8px;
+  border: 1px solid #FF4B4B;
+  gap: 10px;
+  color: #FF4B4B;
   font-family: 'SFProDisplayMedium';
   font-size: 14px;
   font-weight: 500;

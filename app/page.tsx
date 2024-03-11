@@ -1,5 +1,5 @@
 "use client"
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import ProfileImage from "@/public/img/ProfileImage.png"
 import { format } from 'date-fns';
@@ -9,12 +9,24 @@ import Stethoscope from "@/public/vector/Stethoscope.svg"
 import PawFilled from "@/public/vector/PawFilled.svg"
 import TodaysAppointments from "./components/TodaysAppointments";
 import DrRahul from "@/public/img/rahul.png"
-import { TodaysAppointment } from "@/types/types";
+import { TodaysAppointment, Vet } from "@/types/types";
+import { PendingAppointment } from '../types/types';
+import PendingAppointments from "./components/PendingAppointments";
+import Vets from "./components/Vets";
+import DrJuhi from "@/public/img/Juhi.png"
+import store from "../redux"
+import { Provider } from "react-redux";
+import ChatModal from "./components/ChatModal";
+import { VetsMockData, todaysAppointments } from "@/mock";
+import Nav from "./components/Nav";
+import ChatsSideBar from "./components/AllChats";
+import AppointmentsSideBar from "./components/AppointmentsModal";
 
 
 const ProfileStats = () => {
   return (
     <>
+
       <div className="stats flex flex-row items-center justify-between">
         <div className="flex flex-row items-start justify-between stat_card">
           <Image src={Stack} alt="stack" />
@@ -93,7 +105,9 @@ export default function Home() {
   const formattedDate = format(currentDate, 'EEE, MMM dd, yyyy');
   const greetings = renderGreeting()
 
-  const todaysAppointments: TodaysAppointment[] = [
+
+
+  const pendingAppointments: PendingAppointment[] = [
     {
       doctorName: "John Doe",
       doctorProfilePhoto: DrRahul,
@@ -102,36 +116,44 @@ export default function Home() {
       petName: "Tom",
       appointmentStartTime: "09",
       appointmentEndTime: "11",
-      amOrPm: "AM"
+      amOrPm: "AM",
+      appointmentDate: "Sun, 06 June"
     }
   ]
 
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="profile-and-stats w-full flex flex-row items-center justify-between">
-        <div className="user_profile flex flex-row items-center">
-          <Image src={ProfileImage} alt="profile photo" className="profile_photo" />
-          <div className="flex flex-col items-start justify-between h-full profile_info ml-6">
-            <span>
-              {formattedDate}
-            </span>
-            <h2>{greetings.greeting}</h2>
-            <p>{greetings.quote}</p>
+    <Provider store={store}>
+      <Nav />
+      <main className="flex min-h-screen flex-col items-center justify-between">
+        <div className="profile-and-stats w-full flex flex-row items-center justify-between">
+          <div className="user_profile flex flex-row items-center">
+            <Image src={ProfileImage} alt="profile photo" className="profile_photo" />
+            <div className="flex flex-col items-start justify-between h-full profile_info ml-6">
+              <span>
+                {formattedDate}
+              </span>
+              <h2>{greetings.greeting}</h2>
+              <p>{greetings.quote}</p>
+            </div>
           </div>
+          <ProfileStats />
         </div>
-        <ProfileStats />
-      </div>
-      <div className="appointments_container">
-        <TodaysAppointments
-          appointments={todaysAppointments}
-        />
-        <TodaysAppointments
-          appointments={todaysAppointments}
-        />
-        <TodaysAppointments
-          appointments={todaysAppointments}
-        />
-      </div>
-    </main>
+        <div className="appointments_container">
+          <TodaysAppointments
+            appointments={todaysAppointments}
+          />
+          <PendingAppointments
+            appointments={pendingAppointments} />
+          <Vets
+            vets={VetsMockData} />
+        </div>
+      </main>
+      <ChatModal />
+      <ChatsSideBar />
+      <AppointmentsSideBar />
+    </Provider>
+
   );
 }

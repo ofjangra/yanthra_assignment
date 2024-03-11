@@ -44,7 +44,7 @@ const TodaysAppointmentCard = (props: TodaysAppointment) => {
 const TodaysAppointments = (props: TodaysAppointmentDataProps) => {
     return (
         <>
-            <div className="flex flex-col items-center justify-between appointments">
+            <div className="appointments">
                 <div className="container_title flex items-center justify-between w-full todays_appointments">
                     <h2>Todays Appointments</h2>
                     <h2>{props.appointments.length}</h2>
