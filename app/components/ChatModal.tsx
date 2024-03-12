@@ -5,7 +5,9 @@ import { useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/redux"
 import { AppState, handleChatModal } from "@/redux/slice"
 import { useDispatch } from "react-redux"
-
+import SmileEmoji from "@/public/vector/Smile.svg"
+import Attachments from "@/public/vector/Attachment.svg"
+import Mic from "@/public/vector/Mic.svg"
 
 const ChatModal = () => {
     const state = useSelector<RootState>((state) => state.appSlice) as AppState
@@ -27,13 +29,18 @@ const ChatModal = () => {
                             <Image src={chatsData.senderProfileImage} alt="user" width={40} height={40} className="sender_title_image" />
                             <div className="sender_name_status">
                                 <strong>{chatsData.senderName}</strong>
-                                {
-                                    chatsData.senderStatus === "online" ?
-                                        <span className="flex flex-row items-center justify-between">
-                                            <Image src={GreenEllipse} alt="user" />
-                                            online
-                                        </span> : <span>offline</span>
-                                }
+
+                                <span className="flex flex-row items-center justify-between">
+                                    {
+                                        chatsData.senderStatus === "online" ?
+                                            <Image src={GreenEllipse} alt="user" /> : null
+                                    }
+                                    {
+                                        chatsData.senderStatus === "online" ?
+                                            "online" : "offline"
+                                    }
+                                </span>
+
                             </div>
                         </div>
                         <span onClick={() => dispatch(handleChatModal(false))}>
@@ -44,10 +51,6 @@ const ChatModal = () => {
                         {
 
                             chatsData.messages.map((message) => {
-                                const allSenderMessages = chatsData.messages.filter((m) => m.senderId !== userId)
-                                const allReciverMessages = chatsData.messages.filter((m) => m.recieverId === userId)
-                                const lastSenderMessage = allSenderMessages[allSenderMessages.length - 1]
-                                const lastRecieverMessage = allReciverMessages[allReciverMessages.length - 1]
 
                                 return (
                                     <>
@@ -55,8 +58,8 @@ const ChatModal = () => {
 
                                             {
                                                 message.senderId === userId ?
-                                                    <Image src={chatsData.recieverProfileImage} height={16} width={16} alt="user"  /> :
-                                                    <Image src={chatsData.senderProfileImage} height={16} width={16} alt="user"/>
+                                                    <Image src={chatsData.recieverProfileImage} height={16} width={16} alt="user" /> :
+                                                    <Image src={chatsData.senderProfileImage} height={16} width={16} alt="user" />
                                             }
 
                                             <p>{message.message}
@@ -70,7 +73,15 @@ const ChatModal = () => {
                         }
                     </div>
                     <div className="send_message_area relative">
-
+                        <div className="write_message flex flex-row items-center justify-between">
+                            <input type="text"
+                                placeholder="Type Message" />
+                            <div className="message_actions flex flex-row items-center justify-around">
+                                <Image src={SmileEmoji} alt="emoji" />
+                                <Image src={Attachments} alt="attachment" />
+                                <Image src={Mic} alt="mic" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

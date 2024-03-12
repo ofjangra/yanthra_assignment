@@ -2,6 +2,9 @@ import Image from "next/image"
 import Clock from "@/public/vector/Clock.svg"
 import Direct from "@/public/vector/Direct.svg"
 import { TodaysAppointment } from "@/types/types"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/redux"
+import { handleChatModal, handleChats } from "@/redux/slice"
 
 
 
@@ -9,16 +12,21 @@ type TodaysAppointmentDataProps = {
     appointments: TodaysAppointment[]
 }
 const TodaysAppointmentCard = (props: TodaysAppointment) => {
+    const dispatch = useDispatch<AppDispatch>()
+    const handleChat = (id: number | String) => {
+        dispatch(handleChatModal(true))
+        dispatch(handleChats(id))
+    }
     return (
         <>
             <div className="appointment_card flex flex-col items-center justify-between w-full">
                 <div className="flex flex-row items-center  appointment_info w-full">
                     <Image src={props.doctorProfilePhoto} alt="Doctor Profile Photo" className="doctor-profile-photo" />
                     <div className="appointment_info_text h-full flex flex-col items-start justify-between">
-                       <div className="gap-2 flex flex-col items-start justify-between">
-                       <h2>Dr. {props.doctorName}</h2>
-                        <p>Client {props.clientname} |{`${props.pet}(${props.petName})`}</p>
-                       </div>
+                        <div className="gap-2 flex flex-col items-start justify-between">
+                            <h2>Dr. {props.doctorName}</h2>
+                            <p>Client {props.clientname} |{`${props.pet}(${props.petName})`}</p>
+                        </div>
                         <span className="flex items-center justify-between gap-1">
                             <Image src={Clock} alt="Clock Icon" />
                             {props.appointmentStartTime} - {props.appointmentEndTime} {props.amOrPm}
@@ -29,7 +37,7 @@ const TodaysAppointmentCard = (props: TodaysAppointment) => {
                     <button type="button" className="button_filled">
                         Cancel
                     </button>
-                    <button type="button" className="button_outlined flex items-center ml-3">
+                    <button type="button" className="button_outlined flex items-center ml-3" onClick={() => handleChat(props.doctorId!)}>
                         <Image src={Direct} alt="icon" />
                         Message
                     </button>
@@ -49,7 +57,7 @@ const TodaysAppointments = (props: TodaysAppointmentDataProps) => {
                     <h2>Todays Appointments</h2>
                     <h2>{props.appointments.length}</h2>
                 </div>
-                <div className="flex flex-col items-center justify-around overflow-scroll appointment_cards_wrapper w-full">
+                <div className="appointment_cards_wrapper w-full">
                     {
                         props.appointments.length > 0 ?
                             props.appointments.map((card, i) => (
@@ -62,7 +70,9 @@ const TodaysAppointments = (props: TodaysAppointmentDataProps) => {
                                     petName={card.petName}
                                     appointmentStartTime={card.appointmentStartTime}
                                     appointmentEndTime={card.appointmentEndTime}
-                                    amOrPm={card.amOrPm} />
+                                    amOrPm={card.amOrPm}
+                                    doctorId={card.doctorId}
+                                />
                             ))
                             : <h2>No Appointments for today</h2>
                     }

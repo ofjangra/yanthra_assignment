@@ -1,13 +1,13 @@
 import Image from "next/image"
 import { useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/redux"
-import { handleAppointmentsModal, handleConversationsModal } from "@/redux/slice"
+import { handleAppointmentsModal } from "@/redux/slice"
 import { useDispatch } from "react-redux"
 import ArrowBack from "@/public/vector/ArrowBack.svg"
 import SeerchIcon from "@/public/vector/Search.svg"
 import "./AllChats.scss"
-import { useState } from "react"
-import { mockConversations, todaysAppointments } from "@/mock"
+import { useEffect, useRef, useState } from "react"
+import {  todaysAppointments } from "@/mock"
 import "./AllAppointments.scss"
 import { TodaysAppointment } from "@/types/types"
 import Clock from "@/public/vector/Clock.svg"
@@ -52,6 +52,21 @@ const AppointmentsSideBar = () => {
 
     const [activeTabItem, setActiveTabItem] = useState(1)
 
+    const popupRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+                dispatch(handleAppointmentsModal(false))
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dispatch]);
+
     if (!modalActive) {
         return null
     }
@@ -60,7 +75,7 @@ const AppointmentsSideBar = () => {
     return (
         <>
             <div className="modal_container fixed top-0 left-0 w-full">
-                <div className="s_appointments_container h-full  flex flex-col items-center justify-start absolute right-0 top-0 pt-6">
+                <div className="s_appointments_container h-full  flex flex-col items-center justify-start absolute right-0 top-0 pt-6" ref={popupRef}>
                     <div className="w-full h-auto title flex flex-row items-center justify-start px-6">
                         <span onClick={() => dispatch(handleAppointmentsModal(false))}>
                             <Image src={ArrowBack} alt="icon" className="mr-6 h-4" />
@@ -98,6 +113,7 @@ const AppointmentsSideBar = () => {
                                 data.map((appointment, i) => (
                                     <AppointmentCard
                                         amOrPm={appointment.amOrPm}
+                                        doctorId={appointment.doctorId}
                                         appointmentEndTime={appointment.appointmentEndTime}
                                         appointmentStartTime={appointment.appointmentStartTime}
                                         clientname={appointment.clientname}

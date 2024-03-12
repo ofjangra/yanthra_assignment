@@ -11,6 +11,7 @@ export type AppState = {
     chats: Chat
     conversationsModalActive: boolean
     appointmentsModalActive: boolean
+    notificationsActive: boolean
 }
 
 const appState: AppState = {
@@ -25,7 +26,8 @@ const appState: AppState = {
         messages: []
     },
     conversationsModalActive: false,
-    appointmentsModalActive: false
+    appointmentsModalActive: false,
+    notificationsActive: false
 }
 
 const appSlice = createSlice({
@@ -55,11 +57,14 @@ const appSlice = createSlice({
         handleAppointmentsModal(state, action) {
             state.appointmentsModalActive = action.payload
         },
+        handleNotificationsModal(state, action) {
+            state.notificationsActive = action.payload
+        },
     }
 })
 
 
 
-export const { handleChatModal, handleChats, handleConversationsModal, handleAppointmentsModal } = appSlice.actions
+export const { handleChatModal, handleChats, handleConversationsModal, handleAppointmentsModal, handleNotificationsModal } = appSlice.actions
 
 export default appSlice.reducer

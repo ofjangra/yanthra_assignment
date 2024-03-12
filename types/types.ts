@@ -2,6 +2,7 @@ import { StaticImageData } from "next/image"
 
 export type TodaysAppointment = {
     doctorName: string,
+    doctorId:number|string
     doctorProfilePhoto: StaticImageData,
     clientname: string,
     pet: string,
@@ -14,6 +15,7 @@ export type TodaysAppointment = {
 
 export type PendingAppointment = {
     doctorName: string,
+    doctorId:number|string
     doctorProfilePhoto: StaticImageData,
     clientname: string,
     pet: string,
@@ -53,4 +55,12 @@ export type Conversation = {
     name: string,
     lastMessage: string,
     time: string
+}
+
+export type Notification = {
+    class: "new_appointment" | "appointment_decline" | "normal"
+    docName?: string,
+    text: string,
+    profileImage: string,
+    date: string
 }

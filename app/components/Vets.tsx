@@ -59,7 +59,7 @@ const Vets = (props: VetsDataProps) => {
                     <h2>All Vets</h2>
                     <h2>{props.vets.length}</h2>
                 </div>
-                <div className="flex flex-col items-center justify-around overflow-scroll vets_cards_wrapper w-full">
+                <div className="vets_cards_wrapper w-full">
                     {
                         props.vets.length > 0 ?
                             props.vets.map((card, i) => (
@@ -75,11 +75,12 @@ const Vets = (props: VetsDataProps) => {
                             ))
                             : <h2>No Vets</h2>
                     }
+                    <div className="add_vet w-full flex flex-row items-center justify-center">
+                        <Image src={AddIcon} alt="add" />
+                        Add New Vet
+                    </div>
                 </div>
-                <div className="add_vet w-full flex flex-row items-center justify-center">
-                    <Image src={AddIcon} alt="add" />
-                    Add New Vet
-                </div>
+
             </div>
         </>
     )

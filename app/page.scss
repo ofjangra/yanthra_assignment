@@ -84,6 +84,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 24px;
+    margin-top: 80px;
+    max-width: 1470px;
 }
 
 .appointments,
@@ -96,6 +98,13 @@
 
     .appointment_cards_wrapper {
         padding: 20px 20px 35px 20px;
+        height: 584px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .appointment_cards_wrapper::-webkit-scrollbar {
+        width: 2px;
     }
 
     border-radius: 8px;
@@ -207,6 +216,14 @@
 
 .vets_cards_wrapper {
     padding: 35px 20px 35px 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 584px;
+}
+
+.vets_cards_wrapper::-webkit-scrollbar {
+    width: 2px;
+    /* Set your desired width */
 }
 
 .add_vet {
@@ -338,6 +355,15 @@
             line-height: 24px;
             letter-spacing: -0.019em;
         }
+
+        span {
+            font-family: 'MonaSansRegular';
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: -0.019em;
+            color: #4CAF50;
+        }
     }
 }
 
@@ -351,7 +377,12 @@
     flex-direction: column;
     // justify-content: flex-end;
     padding: 20px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    .chat_messages::-webkit-scrollbar {
+        width: 2px;
+    }
 
     img {
         border-radius: 8px;
@@ -390,7 +421,43 @@
 .send_message_area {
     height: 76px;
     width: 100%;
-    background-color: #008E44;
+    padding: 16px;
+}
+
+.write_message {
+    border-radius: 8px;
+    border: 1px solid #0000000D;
+    height: 44px;
+    width: 100%;
+    background-color: #fff;
+    font-family: 'SFProDisplayRegular';
+
+    input {
+        width: calc(100% - 72px);
+        border: none;
+        height: 100%;
+        background: none;
+        border-radius: 8px;
+        padding-left: 34px;
+    }
+
+    input:focus {
+        outline: 0;
+    }
+
+    input::placeholder {
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: -0.019em;
+        text-align: left;
+    }
+
+    .message_actions {
+        width: 71px;
+        height: 25px;
+    }
 }
 
 .message_text_continer {

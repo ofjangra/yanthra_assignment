@@ -17,7 +17,7 @@ const PendingAppointmentsCard = (props: PendingAppointment) => {
                     <div className="appointment_info_text h-full flex flex-col items-start justify-between relative">
                         <span className="appointment_details_expand absolute top-1 right-0 flex flex-row items-center">
                             Details
-                            <Image src={Expand} alt="icon" className="expand_icon"/>
+                            <Image src={Expand} alt="icon" className="expand_icon" />
                         </span>
                         <div className="gap-2 flex flex-col items-start justify-between">
                             <h2>Dr. {props.doctorName}</h2>
@@ -53,16 +53,17 @@ const PendingAppointments = (props: PendingAppointmentsDataProps) => {
         <>
             <div className="appointments">
                 <div className="container_title flex items-center justify-between w-full pending_appointments">
-                    <h2>Todays Appointments</h2>
+                    <h2>Pending Appointments</h2>
                     <h2>{props.appointments.length}</h2>
                 </div>
-                <div className="flex flex-col items-center justify-around overflow-scroll appointment_cards_wrapper w-full">
+                <div className="appointment_cards_wrapper w-full">
                     {
                         props.appointments.length > 0 ?
                             props.appointments.map((card, i) => (
                                 <PendingAppointmentsCard
                                     key={i}
                                     doctorName={card.doctorName}
+                                    doctorId={card.doctorId}
                                     doctorProfilePhoto={card.doctorProfilePhoto}
                                     clientname={card.clientname}
                                     pet={card.pet}

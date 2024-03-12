@@ -10,7 +10,7 @@ import Hamburger from "@/public/vector/Hamburger.svg"
 import ProfileImage from "@/public/img/ProfileImage.png"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/redux"
-import { handleAppointmentsModal, handleConversationsModal } from "@/redux/slice"
+import { handleAppointmentsModal, handleConversationsModal, handleNotificationsModal } from "@/redux/slice"
 
 const Nav = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -39,7 +39,7 @@ const Nav = () => {
                             <Image src={SubscriptionIcon} alt="message" />
                             <span>Subscription</span>
                         </li>
-                        <li className="flex flex-row items-center justify-around">
+                        <li className="flex flex-row items-center justify-around" onClick={() => dispatch(handleNotificationsModal(true))}>
                             <Image src={NotoficationBellIcon} alt="message" />
                             <span>Notification</span>
                             <small className="flex items-center justify-center">10</small>

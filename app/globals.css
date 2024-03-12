@@ -28,6 +28,7 @@
   font-family: 'MonaSansRegular';
   src: url("/fonts/mona_sans/TTF/Mona-Sans-Regular.ttf") format('truetype');
 }
+
 @font-face {
   font-family: 'MonaSansMedium';
   src: url("/fonts/mona_sans/TTF/Mona-Sans-Medium.ttf") format('truetype');
@@ -37,18 +38,23 @@
   font-family: 'MonaSansBold';
   src: url("/fonts/mona_sans/TTF/Mona-Sans-Bold.ttf") format('truetype');
 }
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-main{
-  gap: 80px;
-}
+
+
+
+
 
 .page_wrapper {
-  margin-top: 80px;
-  padding: 50px 80px;
+  padding: 140px 80px;
+}
+
+.profile-and-stats {
+  max-width: 1470px;
 }
 
 .button_filled {
@@ -77,7 +83,7 @@ main{
   letter-spacing: 0em;
 }
 
-.button_outlined_danger{
+.button_outlined_danger {
   padding: 8px 20px 8px 20px;
   border-radius: 8px;
   border: 1px solid #FF4B4B;

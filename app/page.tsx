@@ -21,6 +21,7 @@ import { VetsMockData, todaysAppointments } from "@/mock";
 import Nav from "./components/Nav";
 import ChatsSideBar from "./components/AllChats";
 import AppointmentsSideBar from "./components/AppointmentsModal";
+import Notifications from "./components/Notifications";
 
 
 const ProfileStats = () => {
@@ -109,12 +110,13 @@ export default function Home() {
 
   const pendingAppointments: PendingAppointment[] = [
     {
-      doctorName: "John Doe",
+      doctorName: "Rahul",
+      doctorId:4,
       doctorProfilePhoto: DrRahul,
-      clientname: "Ramesh",
+      clientname: "Alice",
       pet: "Cat",
-      petName: "Tom",
-      appointmentStartTime: "09",
+      petName: "Oggy",
+      appointmentStartTime: "10",
       appointmentEndTime: "11",
       amOrPm: "AM",
       appointmentDate: "Sun, 06 June"
@@ -126,7 +128,7 @@ export default function Home() {
   return (
     <Provider store={store}>
       <Nav />
-      <main className="flex min-h-screen flex-col items-center justify-between">
+      <main className="flex flex-col items-center justify-between">
         <div className="profile-and-stats w-full flex flex-row items-center justify-between">
           <div className="user_profile flex flex-row items-center">
             <Image src={ProfileImage} alt="profile photo" className="profile_photo" />
@@ -153,6 +155,7 @@ export default function Home() {
       <ChatModal />
       <ChatsSideBar />
       <AppointmentsSideBar />
+      <Notifications />
     </Provider>
 
   );
